@@ -1,0 +1,11 @@
+.home {
+  &__title {
+    text-align: center;
+    font-weight: bold;
+    color: darkred;
+  }
+  &__link {
+      color: seagreen;
+      margin-left: 40px;
+  }
+}
