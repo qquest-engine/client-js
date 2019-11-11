@@ -5,9 +5,12 @@ import {
   Route
 } from "react-router-dom";
 
-import './App.scss';
+// components
 import Home from './pages/home/index';
 import Quest from './pages/quest/index';
+//styles
+import './App.scss';
+
 
 function App() {
   return (
