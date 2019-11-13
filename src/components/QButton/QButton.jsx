@@ -1,43 +1,45 @@
 import React from 'react'
-import classNames from 'classnames'
+import cx from 'classnames'
 import propTypes from 'prop-types'
 
-const Button = ({
-    text, type, onClick, className, disabled, isactive
-}) => {
+export default class Button extends React.Component {
 
-    const classes = classNames(
-        'q-button',
-        className,
-        { isactive }
-    );
+    static propTypes = {
+        type: propTypes.string,
+        className: propTypes.string,
+        isActive: propTypes.bool,
+        isRadius: propTypes.string,
+        disabled: propTypes.bool,
+        onClick: propTypes.func
+    };
 
-    return (
-        <button
-            className={classes}
-            disabled={disabled}
-            onClick={onClick}
-            type={type}
-        >{text}</button>
-    );
-};
+    static defaultProps = {
+        type: 'button',
+        className: '',
+        active: false,
+        isRadius: '',
+        disabled: false,
+        onClick: () => { },
+    };
 
-Button.propTypes = {
-    text: propTypes.node,
-    type: propTypes.string,
-    onClick: propTypes.func,
-    className: propTypes.string,
-    disabled: propTypes.bool,
-    active: propTypes.bool,
-};
+    render() {
+        return (
+            <button
+                type={this.props.type}
+                className={cx(
+                    'q-button',
+                    { 'q-button_active': this.props.isActive },
+                    { [`q-button_radius-${this.props.isRadius}`]: this.props.isRadius },
+                    this.props.className
+                )}
+                disabled={this.props.disabled}
+                onClick={() => {
+                    if (!this.props.disabled) this.props.onClick(this.props.isActive)
+                }}
+            >
+                {this.props.children}
+            </button>
+        );
+    }
 
-Button.defaultProps = {
-    text: 'Send',
-    type: 'button',
-    onClick: () => { },
-    className: '',
-    disabled: false,
-    active: false,
-};
-
-export default Button;
+}
