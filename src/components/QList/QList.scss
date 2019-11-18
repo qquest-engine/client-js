@@ -1,0 +1,23 @@
+.drop-down {
+	position: relative;
+	border: 0.3rem solid grey;
+	width: 20%;
+	&:hover {
+		background-image: linear-gradient(to right, #7ed56f, #28b485);
+		cursor: pointer;
+	}
+	div.drop-down__list {
+		position: absolute;
+		z-index: 10;
+		width: 100%;
+		top: 110%;
+	}
+}
+.drop-down__list {
+	div {
+		&:hover {
+			background-image: linear-gradient(to right, #6f82d5, #6928b4);
+			cursor: pointer;
+		}
+	}
+}
