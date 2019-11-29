@@ -1,0 +1,100 @@
+.q-checkbox {
+    position: relative;   
+    display: inline-block;
+    font-size: 14px;
+    height: 25px;
+    line-height: 25px;
+    color: #1b1f3b;
+    padding-left: 33px; 
+    &__input {        
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 0;
+        height: 0;
+        opacity: 0;
+        cursor: pointer;
+        &:checked + .q-checkbox__checkmark::after,
+        &:checked + .q-checkbox__checkmark::before{
+            display: block;
+        }
+        &:disabled {
+            cursor: not-allowed;
+        }
+    }
+    &__checkmark {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 25px;
+        height: 25px;
+        border: 1px solid #42585e;    
+        &::after,
+        &::before {
+            display: none;
+            content: '';
+            position: absolute;
+            width: 10px;
+            height: 2px;
+            background-color: #42585e;
+        }
+        &::after {            
+            left: 3px;
+            top: 11px;            
+            transform: rotate(45deg);
+        }
+        &::before {
+            left: 9px;
+            top: 11px;
+            transform: rotate(-45deg);
+        }
+    }
+    &_main-filter {
+        font-size: 20px;
+        height: 22px;
+        line-height: 22px;
+        color: #1b1f3b;    
+        padding-left: 32px; 
+        .q-checkbox__checkmark {
+            width: 22px;
+            height: 22px;
+            border-color: #707070;      
+            &::after,
+            &::before {
+                width: 8px;
+            }
+            &::after {            
+                left: 3px;
+                top: 9px;            
+            }
+            &::before {
+                left: 8px;
+                top: 9px;
+            }                      
+        }
+    }  
+    &_check-in {
+        font-size: 14px;
+        height: 40px;
+        line-height: 40px;
+        color: #767989;
+        padding-left: 50px; 
+        .q-checkbox__checkmark {
+            width: 40px;
+            height: 40px;
+            border-color: #a0abae;
+            &::after,
+            &::before {
+                width: 18px;
+            }
+            &::after {            
+                left: 4px;
+                top: 19px;           
+            }
+            &::before {
+                left: 16px;
+                top: 19px;
+            }        
+        }        
+    }  
+}
