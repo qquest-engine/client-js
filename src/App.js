@@ -16,12 +16,8 @@ function App() {
   return (
      <Router>
         <Switch>
-          <Route path="/quest">
-            <Quest />
-          </Route>
-          <Route path="/">
-            <Home />
-          </Route>
+          <Route path="/quest/:name" component={Quest} />
+          <Route path="/" component={Home} />
         </Switch>
     </Router>
   );
