@@ -1,1 +1,151 @@
+// mixins
+@function fsize($size) {
+  @return ($size/$baseSize)+rem;
+};
 
+@mixin flex($direction, $justify, $align, $wrap, $inline: false) {
+  @if ($inline) {
+    display: inline-flex;
+  }
+  @else {
+    display: flex
+  }
+  align-items: $align;
+  justify-content: $justify;
+  flex-direction: $direction;
+  flex-wrap: $wrap;
+};
+
+// variables
+$mainFont: 'Proxima Nova';
+$titleFont: 'Gilroy';
+$baseSize: 15;
+
+$light: #ffffff;
+$dark: #1b1f3b;
+$accent: #f58938;
+
+$success: green;
+$error: red;
+
+
+$miniWidth: 320px;
+$phoneWidth: 768px;
+$tabletWidth: 1024px;
+$desktopWidth: 1280px;
+$fullWidth: 1440px;
+$fullMidWidth: 1600px;
+$fullHDWidth: 1920px;
+
+$mini: 'max-width: ' + ($miniWidth - 1);
+$phone: 'max-width: ' + ($phoneWidth - 1);
+$tablet: 'max-width: ' + ($tabletWidth - 1);
+$desktop: 'max-width: ' + ($desktopWidth - 1);
+$full: 'max-width: ' + ($fullWidth - 1);
+$fullMid: 'max-width: ' + ($fullMidWidth - 1);
+$fullHD: 'max-width: ' + ($fullHDWidth - 1);
+
+// reset
+html {
+  margin: 0;
+  padding: 0;
+  font-size: 15px;
+  line-height: 1.5em;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  color: $dark;
+  font-family: $mainFont, 'Arial', sans-serif;
+  background-color: $light;
+  font-size: 15px;
+  font-weight: 400;
+  min-width: 320px;
+  min-height: 500px;
+  line-height: 1.5em;
+  overflow-x: hidden;
+}
+
+@media ($tablet) {
+  body {
+    font-size: 14px;
+  }
+}
+
+input, textarea, button {
+  text-decoration: none;
+  font-family: $mainFont, 'Arial', sans-serif;
+  max-width: 100%;
+  &:hover, &:focus {
+    outline: none;
+  }
+}
+
+button {
+  background: none;
+  border: 0 none;
+  cursor: pointer;
+}
+
+a {
+  color: $light;
+  text-decoration: none;
+  font-family: $mainFont, 'Arial', sans-serif;
+  &:hover, &:focus {
+    text-decoration: none;
+    outline: none;
+  }
+}
+
+body * {
+  box-sizing: border-box;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  & li {
+    list-style: none;
+    margin: 0;
+    padding: 0;  
+  }
+}
+
+p {
+  padding: 0 0 20px 0;
+  margin: 0;
+}
+
+.clearfix:after {
+  display: block;
+  content: '';
+  clear: both;
+}
+
+img, iframe {
+  max-width: 100%;
+  height: auto;
+}
+
+// main
+.header {
+	background-color: $light;
+	color: $dark;
+	height: 60px;
+}
+.wrapper {
+	display: flex;
+	width: 100%;
+
+}
+.aside {
+	background-color: $dark;
+	color: white;
+	flex: 0 0 20%;
+	padding: 20px 5px;
+	&:nth-child(2) {
+		background-color: $light;
+		color: $dark;
+	}
+}

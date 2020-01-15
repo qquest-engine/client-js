@@ -12,7 +12,7 @@ class QuestItem extends React.Component {
           alt=""
         />
         <div className="card-body">
-          <h6 className="card-title"><Link to={`/quest/${item.name}`}>{item.name}</Link></h6>
+          <h6 className="card-title"><Link to={`/quest/${item.id}`}>{item.name}</Link></h6>
           <div className="card-text">Сложность: {item.difficulty}</div>
           <div className="card-text">Публичность: {item.isPublic}</div>
           <div className="card-text">Тип: {item.type}</div>

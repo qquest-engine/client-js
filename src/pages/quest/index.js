@@ -4,9 +4,10 @@ import CallApi from "../../api/api";
 import './style.scss';
 const quest =
   {
+    "id": 1,
     "description": "string",
     "difficulty": 0,
-    "imageLink": "string",
+    "imageLink": "https://www.kbb.com/articles/wp-content/uploads/2019/11/2019-rolls-royce-cullinan-side.jpg",
     "isPublic": true,
     "name": "string1",
     "type": "AUTO"
@@ -21,35 +22,39 @@ class Quest extends React.Component {
   }
 
   componentDidMount() {
-      const id = this.props.match.params.name;
-      console.log(id)
-/*      CallApi.get(`/quest/${id}`)
-      .then(data => {
-        this.setState({
-          quest: data
-        });
-      });*/
+/*    const id = this.props.match.params.name;
+    console.log(id)
+    CallApi.get(`/quest/${id}`)
+    .then(data => {
+      this.setState({
+        quest: data
+      });
+    });*/
   }
 
   render() {
     const { quest } = this.state;
     const id = this.props.match.params.name;
     return (
-		        <div key={quest.name} className="col-6 mb-4">
-                <p>Router param { id }</p>
+		        <div key={quest.id} className="col-6 mb-4">
                 <div className="card" style={{ width: "100%" }}>
-                  <img
-                    className="card-img-top card-img--height"
-                    src={quest.imageLink}
-                    alt=""
-                  />
-                  <div className="card-body">
-                    <h6 className="card-title">{quest.name}</h6>
-                    <div className="card-text">Сложность: {quest.difficulty}</div>
-                    <div className="card-text">Публичность: {quest.isPublic}</div>
-                    <div className="card-text">Тип: {quest.type}</div>
-                    <div className="card-text">Описание: {quest.description}</div>
+                  <div className="card-top">
+                    <div className="card-img">
+                      <img
+                        className="card-img-top card-img--height"
+                        src={quest.imageLink}
+                        alt=""
+                      />
+                    </div>
+                    <div className="card-body">
+                      <h1 className="card-title">{quest.name}</h1>
+                      <div className="card-text">Сложность: {quest.difficulty}</div>
+                      <div className="card-text">Публичность: {quest.isPublic}</div>
+                      <div className="card-text">Тип: {quest.type}</div>
+                      
+                    </div>
                   </div>
+                  <div className="card-text">Описание: {quest.description}</div>
                 </div>
 		        </div>
     )
