@@ -129,23 +129,34 @@ img, iframe {
 }
 
 // main
-.header {
-	background-color: $light;
-	color: $dark;
-	height: 60px;
+@font-face {
+  font-family: 'Proxima Nova';
+  src: url('/fonts/ProximaNova-Regular.eot');
+  src: local('/fonts/Proxima Nova Regular'), local('ProximaNova-Regular');
+  src: url('/fonts/ProximaNova-Regular.eot?#iefix') format('embedded-opentype');
+  src: url('/fonts/ProximaNova-Regular.woff') format('woff');
+  src: url('/fonts/ProximaNova-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal  ;
 }
+
+body {
+  font-family: "Proxima Nova", Arial, sans-serif;
+}
+
+
 .wrapper {
 	display: flex;
+  justify-content: flex-start;
 	width: 100%;
-
+  min-height: calc(100vh - 60px);
 }
-.aside {
+.nav {
 	background-color: $dark;
 	color: white;
-	flex: 0 0 20%;
+	flex: 0 0 350px;
 	padding: 20px 5px;
-	&:nth-child(2) {
-		background-color: $light;
-		color: $dark;
-	}
+}
+.main {
+  flex-grow: 1;
 }

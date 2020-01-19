@@ -1,6 +1,6 @@
 import queryString from "query-string";
 
-export const API_URL = "https://quest-engine-back.herokuapp.com/quest-engine";
+export const API_URL = "https://quest-engine-back.herokuapp.com";
 
 export const fetchApi = (url, options = {}) => {
   return new Promise((resolve, reject) => {
@@ -30,7 +30,7 @@ export default class CallApi {
     return fetchApi(
       `${API_URL}${url}?${queryString.stringify(queryStringParams)}`,
       {
-        mode: "cors",
+        //mode: "cors",
         headers: {
           "Content-type": "application/json"
         }
@@ -47,7 +47,7 @@ export default class CallApi {
       `${API_URL}${url}?${queryString.stringify(queryStringParams)}`,
       {
         method: "POST",
-        mode: "cors",
+        //mode: "cors",
         headers: {
           "Content-type": "application/json"
         },
@@ -63,7 +63,7 @@ export default class CallApi {
       `${API_URL}${url}?${queryString.stringify(queryStringParams)}`,
       {
         method: "DELETE",
-        mode: "cors",
+        //mode: "cors",
         headers: {
           "Content-type": "application/json"
         },

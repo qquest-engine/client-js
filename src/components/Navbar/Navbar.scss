@@ -1,0 +1,19 @@
+.nav {
+	color: blue;
+}
+.navbar {
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+.menu-block {
+	flex-grow: 1;
+}
+.menu {
+	&__item {
+		font-size: 30px;
+		line-height: 37px;
+		font-family: "Proxima Nova", Arial, sans-serif;
+	}
+}

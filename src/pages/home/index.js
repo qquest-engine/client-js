@@ -1,10 +1,9 @@
 import React from 'react';
+import './home.scss';
 import QuestItem from "../../components/QuestItem";
 import CallApi from "../../api/api";
 
-import './style.scss';
-
-const quests = [
+/*const quests = [
   {
     "id": 1,
     "description": "string",
@@ -41,41 +40,39 @@ const quests = [
     "name": "string2",
     "type": "AUTO"
   }
-];
+];*/
 
 class Home extends React.Component {
   constructor() {
     super();
     this.state = {
-      quests
-    };
-    //quests: []
-  }
+      quests: []
+  }}
 
   componentDidMount() {
-/*    CallApi.get("/quests", {mode: 'cors'})
+    CallApi.get("/quests", {mode: 'cors'})
     .then(data => {
-    	console.log(data);
+      console.log('quests / home', data);
       this.setState({
         quests: data
       });
-    });*/
+    });
   }
-
+  
   render() {
     const { quests } = this.state;
     return (
-        <div className="home home__wrp" >
-            <div class="quests">
+            
+            <div className="quests">
               { quests.map(quest => 
       		      (
-      		        <div key={quest.name} className="col-6 mb-4 quest">
+      		        <div key={quest.id} className="col-6 mb-4 quest">
       		          <QuestItem item={quest} />
+                    
       		        </div>
       		      )
               )}
             </div>
-        </div>
     )
   }
 }
