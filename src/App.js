@@ -22,7 +22,7 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      isLogged: false,
+      isLogged: true,
     };
   }
   render() {

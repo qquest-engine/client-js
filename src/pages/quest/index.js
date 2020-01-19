@@ -1,8 +1,11 @@
 import React from 'react';
 import './quest.scss';
 import CallApi from "../../api/api";
-import Button from "../../components/QButton/QButton";
 import { Link } from "react-router-dom";
+import Button from "../../components/common/Button";
+import photo from '../../assets/images/icons/photo.svg';
+import auto from '../../assets/images/icons/auto.svg';
+import online from '../../assets/images/icons/online.svg';
 
 /*{
   "accessTime": 0,
@@ -20,23 +23,24 @@ import { Link } from "react-router-dom";
 const quest =
   {
     "id": 1,
-    "description": "string",
-    "difficulty": 0,
+    "accessTime": Date.now(),
+    "author": "OLGA",    
+    "description": "Последний раз её видели в г. Харькове, информация обновляется. За пределы Харьковской области собака вряд ли выбегала. Рассчитываем, что собака найдется за 12 часов. Предполагаемая длина поискового маршрута - 200 км.",
     "imageLink": "https://www.kbb.com/articles/wp-content/uploads/2019/11/2019-rolls-royce-cullinan-side.jpg",
     "isPublic": true,
-    "name": "string1",
+    "name": "Название квеста",
     "type": "AUTO"
   }
 class Quest extends React.Component {
   constructor() {
     super();
     this.state = {
-      quest: null
+      quest
     };
-    // quest
+    // quest: null
   }
 
-  componentDidMount() {
+/*  componentDidMount() {
     const id = this.props.match.params.name;
     console.log(id)
     CallApi.get(`/quests/${id}`)
@@ -46,11 +50,14 @@ class Quest extends React.Component {
         quest: data
       });
     });
-  }
+  }*/
 
   render() {
     const { quest } = this.state;
     const id = this.props.match.params.name;
+    const timestamp = new Date(quest.accessTime);
+    const date = timestamp.getDate() + '.' + (timestamp.getMonth() + 1) + '.' + timestamp.getFullYear();
+    const time = timestamp.getHours() + ':' + timestamp.getMinutes();
     return (
 		        <div>
               { quest && 
@@ -66,14 +73,26 @@ class Quest extends React.Component {
                       </div>
                       <div className="card-body">
                         <h1 className="card-title">{quest.name}</h1>
-                        <div className="card-text">Время начала: {quest.accessTime}</div>
-                        <div className="card-text">Автор: {quest.author}</div>
-                        <div className="card-text">Публичность: {quest.isPublic}</div>
+                        <div className="card-text">Дата проведения: {date}</div>
+                        <div className="card-text">Начало игры в: {time}</div>
+                        <div className="card-text">Автор: <Link to={`/quest/user/${quest.id}`}>{quest.author}</Link></div>
                         <div className="card-text">Тип: {quest.type}</div>
-                        <Link to='/question'>Начать игру</Link>
+                        <div>
+                          <img src={photo} className="" />
+                          <img src={online} className="" />
+                          <img src={auto} className="" />
+                        </div>
+                        <Button
+                          type="button"
+                          className="btn btn-primary m-2"
+                          >
+                          Вход в игру
+                        </Button>
                       </div>
                     </div>
-                    <div className="card-text">Описание: {quest.description}</div>
+                    <h2>Описание:</h2>
+                    <div className="card-text"> {quest.description}</div>
+                    <h2>Необходимый минимум:</h2>
                   </div>
                 </div>
               }

@@ -1,5 +1,8 @@
 import React from "react";
 import Field from "../common/Field";
+import Button from "../common/Button";
+import { Link } from "react-router-dom";
+
 const Login = props => {
 	const {
 		values,
@@ -7,10 +10,10 @@ const Login = props => {
 		onChange
 	} = props;
 	return (
-		<div className='step'>
+		<div className=''>
 			<Field
 				id="email"
-				labelText="email"
+				labelText="Enter email"
 				type="text"
 				placeholder="Enter email"
 				name="email"
@@ -20,7 +23,7 @@ const Login = props => {
 			/>
 			<Field
 				id="password"
-				labelText="password"
+				labelText="Enter password"
 				type="password"
 				placeholder="Enter password"
 				name="password"
@@ -28,12 +31,16 @@ const Login = props => {
 				onChange={onChange}
 				error={errors.password}
 			/>
-			<button
+			<Button
 				type="button"
 				className="btn btn-primary m-2"
-			>
+				>
 				Login
-			</button>
+			</Button>
+			<div>
+				<Link to="/registration">Register</Link>
+				<Link to="/forgot-pass">Forgot password?</Link>
+			</div>
 		</div>
 	);
 };

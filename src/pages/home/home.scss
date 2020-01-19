@@ -1,12 +1,14 @@
+.quests-block {
+  background-color: #f58938;
+  color: white;  
+  height: 100%;
+}
 .quests {
   //@include flex(row, space-between, stretch, wrap);
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  background-color: #f58938;
-  color: white;
   padding: 30px;
-  height: 100%;
   &:after, &:before {
     content: '';
     width: calc(33% - calc(60px / 3));

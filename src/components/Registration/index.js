@@ -1,5 +1,8 @@
 import React from "react";
 import Field from "../common/Field";
+import Button from "../common/Button";
+import { Link } from "react-router-dom";
+
 const Registration = props => {
 	const {
 		values,
@@ -7,10 +10,10 @@ const Registration = props => {
 		onChange
 	} = props;
 	return (
-		<div className='step'>
+		<div className=''>
 			<Field
 				id="username"
-				labelText="username"
+				labelText="Enter username"
 				type="text"
 				placeholder="Enter username"
 				name="username"
@@ -19,8 +22,18 @@ const Registration = props => {
 				error={errors.username}
 			/>
 			<Field
+				id="email"
+				labelText="Enter email"
+				type="text"
+				placeholder="Enter email"
+				name="email"
+				value={values.email}
+				onChange={onChange}
+				error={errors.email}
+			/>
+			<Field
 				id="password"
-				labelText="password"
+				labelText="Enter password"
 				type="password"
 				placeholder="Enter password"
 				name="password"
@@ -28,12 +41,23 @@ const Registration = props => {
 				onChange={onChange}
 				error={errors.password}
 			/>
-			<button
+			<Field
+				id="repeatPassword"
+				labelText="Repeat password"
+				type="password"
+				placeholder="Repeat password"
+				name="repeatPassword"
+				value={values.repeatPassword}
+				onChange={onChange}
+				error={errors.repeatPassword}
+			/>
+			<Button
 				type="button"
-				className="btn btn-primary m-2"
-			>
+				className="button_dark"
+				>
 				Registration
-			</button>
+			</Button>
+			<div>Уже в деле? <Link>Login</Link></div>
 		</div>
 	);
 };

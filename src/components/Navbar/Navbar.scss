@@ -1,5 +1,8 @@
 .nav {
 	color: blue;
+	a {
+		color: white;
+	}
 }
 .navbar {
 	height: 100%;
@@ -9,11 +12,20 @@
 }
 .menu-block {
 	flex-grow: 1;
+	padding-left: 42px;	
 }
 .menu {
 	&__item {
 		font-size: 30px;
 		line-height: 37px;
 		font-family: "Proxima Nova", Arial, sans-serif;
+	}
+}
+.submenu {
+	margin-left: 30px;
+}
+.social {
+	&__item {
+		margin: 0 10px;
 	}
 }

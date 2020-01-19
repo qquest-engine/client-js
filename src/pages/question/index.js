@@ -1,7 +1,6 @@
 import React from 'react';
 import './question.scss';
 import CallApi from "../../api/api";
-import Button from "../../components/QButton/QButton";
 
 
 const quest =
