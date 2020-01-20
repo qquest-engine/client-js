@@ -43,7 +43,7 @@ class Auth extends React.Component {
     return (
       <aside className="auth">
         <div> 
-          { this.state.login && <Login values={this.state.values} errors={this.state.errors} onChange={this.onChange} />}
+          { /*this.state.login && <Login values={this.state.values} errors={this.state.errors} onChange={this.onChange} />*/}
           <hr />
           { this.state.registration && <Registration values={this.state.values} errors={this.state.errors} onChange={this.onChange} />}
           { this.state.intro && 

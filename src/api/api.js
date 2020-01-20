@@ -47,7 +47,7 @@ export default class CallApi {
       `${API_URL}${url}?${queryString.stringify(queryStringParams)}`,
       {
         method: "POST",
-        //mode: "cors",
+        mode: "cors",
         headers: {
           "Content-type": "application/json"
         },
