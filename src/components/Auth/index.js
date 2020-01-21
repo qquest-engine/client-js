@@ -15,35 +15,13 @@ class Auth extends React.Component {
       registration: true,
       login: true,
       intro: false,
-      values: {
-        username: "",
-        email: "",
-        password: "",
-        repeatPassword: ""  
-      },
-      errors: {
-        username: false,
-        email: false,
-        password: false,
-        repeatPassword: false
-      }
   }}
-
-  onChange = event => {
-    const newValues = {
-      ...this.state.values,
-      [event.target.name]: event.target.value
-    };
-    this.setState({
-      values: newValues
-    });
-  };
 
   render() {
     return (
       <aside className="auth">
         <div> 
-          { /*this.state.login && <Login values={this.state.values} errors={this.state.errors} onChange={this.onChange} />*/}
+          { this.state.login && <Login values={this.state.values} errors={this.state.errors} onChange={this.onChange} />}
           <hr />
           { this.state.registration && <Registration values={this.state.values} errors={this.state.errors} onChange={this.onChange} />}
           { this.state.intro && 

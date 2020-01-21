@@ -3,6 +3,15 @@ import queryString from "query-string";
 export const API_URL = "https://quest-engine-back.herokuapp.com";
 
 export const fetchApi = (url, options = {}) => {
+
+  options.headers = options.headers || {};
+  options.headers['Content-Type'] = 'application/json';
+
+  let token = window.localStorage.getItem('jwt');
+  console.log('options.headers.authorization',options.headers.authorization)
+  if (options.headers.authorization === undefined) {
+      options.headers.authorization = token ? `Bearer ${token}`: '';
+  }
   return new Promise((resolve, reject) => {
     fetch(url, options)
       .then(response => {
@@ -30,14 +39,12 @@ export default class CallApi {
     return fetchApi(
       `${API_URL}${url}?${queryString.stringify(queryStringParams)}`,
       {
-        //mode: "cors",
         headers: {
           "Content-type": "application/json"
         }
       }
     );
   }
-
   static post(url, options = {}) {
     const { params = {}, body = {} } = options;
     const queryStringParams = {
@@ -47,7 +54,6 @@ export default class CallApi {
       `${API_URL}${url}?${queryString.stringify(queryStringParams)}`,
       {
         method: "POST",
-        mode: "cors",
         headers: {
           "Content-type": "application/json"
         },
@@ -71,4 +77,8 @@ export default class CallApi {
       }
     );
   }
+
+    static setToken(value) {
+        value ? window.localStorage.setItem("jwt", value) : window.localStorage.removeItem("jwt")
+    }
 }
