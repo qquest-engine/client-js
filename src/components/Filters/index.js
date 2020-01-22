@@ -1,14 +1,17 @@
 import React from "react";
-import './Filter.scss'
-import search from '../../assets/images/icons/search.svg';
+import './Filters.scss'
 import CheckboxField from "../common/CheckboxField";
 
-const Filter = props => {
-	const {
-		values,
-		errors,
-		onCheck,
-	} = props;
+class Filters extends React.Component {
+	constructor() {
+		super();
+		this.state = {
+		};
+	};
+
+
+  render() {
+  	const {types, onCheck} = this.props;
 	return (
 		<div className="filters-block">
 			<ul className="filters">
@@ -20,10 +23,9 @@ const Filter = props => {
 						id="auto"
 						labelText="Автоквест"
 						name="auto"
-						value={values.auto}
+						value={types.auto}
 						onChange={onCheck}
-						checked={values.auto}
-						error={errors.auto}
+						checked={types.auto}
 					/>
 				</li>
 				<li>
@@ -33,10 +35,9 @@ const Filter = props => {
 						id="online"
 						labelText="Онлайн"
 						name="online"
-						value={values.online}
+						value={types.online}
 						onChange={onCheck}
-						checked={values.online}
-						error={errors.online}
+						checked={types.online}
 					/>
 				</li>
 				<li>
@@ -46,16 +47,15 @@ const Filter = props => {
 						id="photo"
 						labelText="Фотоохота"
 						name="photo"
-						value={values.photo}
+						value={types.photo}
 						onChange={onCheck}
-						checked={values.photo}
-						error={errors.photo}
+						checked={types.photo}
 					/>
 				</li>
 			</ul>
-			<img src={search} />
 		</div>
 	);
-};
+  }
+}
 
-export default Filter;
+export default Filters;
