@@ -51,7 +51,13 @@ class Login extends React.Component {
     console.log('body', body);
     CallApi.post("/auth", {
           body
-        }).then(resp => console.log(resp)).then(token => CallApi.setToken(token));
+        })
+    .then(resp => resp.json())
+    .then(token => {console.log('token',token); CallApi.setToken(token)})
+    .then(
+      CallApi.get("/user")
+    .then(resp => resp.json())
+    .then(user => {console.log('user',user)}));
   };
 
   onLogin = e => {

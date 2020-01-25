@@ -13,8 +13,7 @@ import Rules from './pages/rules/index';
 import How2Play from './pages/how2play/index';
 import Question from './pages/question/index';
 // components
-import Filters from "./components/Filters";
-import Search from "./components/Search";
+
 import Auth from "./components/Auth";
 import Navbar from "./components/Navbar";
 //styles
@@ -36,38 +35,13 @@ class App extends React.Component {
     };
   }
 
-  onCheck = event => {
-    const newValues = {
-      ...this.state.types,
-      [event.target.name]: event.target.checked
-    };
-    console.log(newValues);
-    this.setState({
-      types: newValues
-    });
-    let str = '';
-    Object.entries(this.state.types).forEach(item => {
-      if (item[1]) str+= `${item[0]},`
-    });
-    str = str.slice(0,-1);
-        CallApi.get(`/quests?type=${str}&search=${this.state.search}&author=${this.state.author}`, {
-        }).then(resp => console.log(resp));
-  };
-
-  onChange = event => {
-    this.setState({
-      search: event.target.value
-    });
-  };
-
   render() {
     return (
      <Router>
       <header className="header">
         <div className="logo1">Quest</div>
         <div className="logo2">Engine</div>
-        <Filters types={this.state.types} onCheck={this.onCheck} />
-        <Search search={this.state.search} onChange={this.onChange} />
+
       </header>
       <div className="wrapper">
         <Navbar isLogged={this.state.isLogged} queryStr={this.state.queryStr} />

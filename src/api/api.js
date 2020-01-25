@@ -39,9 +39,9 @@ export default class CallApi {
     return fetchApi(
       `${API_URL}${url}?${queryString.stringify(queryStringParams)}`,
       {
-        headers: {
+/*        headers: {
           "Content-type": "application/json"
-        }
+        }*/
       }
     );
   }
@@ -54,9 +54,9 @@ export default class CallApi {
       `${API_URL}${url}?${queryString.stringify(queryStringParams)}`,
       {
         method: "POST",
-        headers: {
+/*        headers: {
           "Content-type": "application/json"
-        },
+        },*/
         body: JSON.stringify(body)
       }
     );
@@ -70,9 +70,9 @@ export default class CallApi {
       {
         method: "DELETE",
         //mode: "cors",
-        headers: {
+/*        headers: {
           "Content-type": "application/json"
-        },
+        },*/
         body: JSON.stringify(body)
       }
     );

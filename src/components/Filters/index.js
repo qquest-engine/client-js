@@ -11,11 +11,11 @@ class Filters extends React.Component {
 
 
   render() {
-  	const {types, onCheck} = this.props;
+  	const {types, onCheck, onViewAll} = this.props;
 	return (
 		<div className="filters-block">
 			<ul className="filters">
-				<li>Все</li>
+				<li onClick={onViewAll}>Все</li>
 				<li>
 					<CheckboxField
 						className="form-check-input"

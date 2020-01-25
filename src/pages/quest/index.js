@@ -16,7 +16,7 @@ class Quest extends React.Component {
   }
 
   componentDidMount() {
-    const id = this.props.match.params.name;
+    const id = this.props.match.params.id;
     console.log(id)
     CallApi.get(`/quests/${id}`)
     .then(resp => resp.json())
@@ -31,6 +31,7 @@ class Quest extends React.Component {
   render() {
     const { quest } = this.state;
     const id = this.props.match.params.name;
+        console.log(id, quest)
     let timestamp;
     let date;
     let time;    

@@ -1,23 +1,20 @@
 import React from "react";
 import Field from "../common/Field";
 import Button from "../common/Button";
+import { Link } from "react-router-dom";
 import CallApi from "../../api/api";
 
-class Registration extends React.Component {
+class Login extends React.Component {
   constructor() {
     super();
     this.state = {
       values: {
-        username: "",
         email: "",
-        password: "",
-        repeatPassword: ""  
+        password: "" 
       },
       errors: {
-        username: false,
         email: false,
-        password: false,
-        repeatPassword: false
+        password: false
       }
   }}
 
@@ -35,10 +32,6 @@ class Registration extends React.Component {
   validateFields = () => {
     const errors = {};
 
-    if (this.state.values.username === "") {
-      errors.username = "Not empty";
-    }
-
     if (this.state.values.email === "") {
       errors.email = "Not empty";
     }
@@ -47,26 +40,21 @@ class Registration extends React.Component {
       errors.password = "Not empty";
     }
 
-    if (this.state.values.repeatPassword !== this.state.values.password) {
-      errors.repeatPassword = "Passwords is not equal";
-    }
-
     return errors;
   };
 
   onSubmit = () => {
   	const body = {
-            'userName': this.state.values.username,
             'email': this.state.values.email,
             'password': this.state.values.password
           }
     console.log('body', body);
-    CallApi.post("/users", {
+    CallApi.post("/auth", {
           body
-        });
+        }).then(resp => resp.json()).then(token => {console.log('token',token); CallApi.setToken(token)});
   };
 
-  onRegistration = e => {
+  onLogin = e => {
     e.preventDefault();
     const errors = this.validateFields();
     console.log('errors', errors);
@@ -86,19 +74,9 @@ class Registration extends React.Component {
   	const { values, errors } = this.state;
 	return (
 		<div className=''>
-		<form onSubmit={this.onRegistration}>
+		<form onSubmit={this.onLogin}>
 			<Field
-				id="username"
-				labelText="Enter username"
-				type="text"
-				placeholder="Enter username"
-				name="username"
-				value={values.username}
-				onChange={this.onChange}
-				error={errors.username}
-			/>
-			<Field
-				id="email1"
+				id="email"
 				labelText="Enter email"
 				type="text"
 				placeholder="Enter email"
@@ -108,7 +86,7 @@ class Registration extends React.Component {
 				error={errors.email}
 			/>
 			<Field
-				id="password1"
+				id="password"
 				labelText="Enter password"
 				type="password"
 				placeholder="Enter password"
@@ -117,28 +95,16 @@ class Registration extends React.Component {
 				onChange={this.onChange}
 				error={errors.password}
 			/>
-			<Field
-				id="repeatPassword1"
-				labelText="Repeat password"
-				type="password"
-				placeholder="Repeat password"
-				name="repeatPassword"
-				value={values.repeatPassword}
-				onChange={this.onChange}
-				error={errors.repeatPassword}
-			/>
 			<Button
 				type="submit"
-				className="button_dark"
-				
+				className="btn btn-primary m-2"
 				>
-				Registration
+				Login
 			</Button>
-			<div>Уже в деле? <a>Login</a></div>
-		</form>	
+			</form>	
 		</div>
 	);
   }
 }
 
-export default Registration;
+export default Login;
