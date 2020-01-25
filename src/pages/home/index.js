@@ -37,6 +37,7 @@ class Home extends React.Component {
   }
 
   componentDidMount = () => {
+    console.log('componentDidMount',this.getQueryString());
     let url = "/quests?" + this.getQueryString();
     CallApi.get(url, {mode: 'cors'})
     .then(resp => resp.json())

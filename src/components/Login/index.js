@@ -15,7 +15,8 @@ class Login extends React.Component {
       errors: {
         email: false,
         password: false
-      }
+      },
+      response: ''
   }}
 
   onChange = event => {
@@ -53,11 +54,12 @@ class Login extends React.Component {
           body
         })
     .then(resp => resp.json())
-    .then(token => {console.log('token',token); CallApi.setToken(token)})
-    .then(
+    .then(token => {console.log('token',token); CallApi.setToken(token.jwt);})
+    .then(this.props.onLoginOuter())
+/*    .then(
       CallApi.get("/user")
     .then(resp => resp.json())
-    .then(user => {console.log('user',user)}));
+    .then(user => {console.log('user',user)}));*/
   };
 
   onLogin = e => {
@@ -77,41 +79,49 @@ class Login extends React.Component {
   };
 
   render() {
-  	const { values, errors } = this.state;
+  	const { values, errors, response } = this.state;
 	return (
 		<div className=''>
-		<form onSubmit={this.onLogin}>
-			<Field
-				id="email"
-				labelText="Enter email"
-				type="text"
-				placeholder="Enter email"
-				name="email"
-				value={values.email}
-				onChange={this.onChange}
-				error={errors.email}
-			/>
-			<Field
-				id="password"
-				labelText="Enter password"
-				type="password"
-				placeholder="Enter password"
-				name="password"
-				value={values.password}
-				onChange={this.onChange}
-				error={errors.password}
-			/>
-			<Button
-				type="submit"
-				className="btn btn-primary m-2"
-				>
-				Login
-			</Button>
-			</form>	
-			<div>
-				<Link to="/registration">Register</Link>
-				<Link to="/forgot-pass">Forgot password?</Link>
-			</div>
+    {!response && 
+    <div>
+    <form onSubmit={this.onLogin}>
+      <Field
+        id="email"
+        labelText="Enter email"
+        type="text"
+        placeholder="Enter email"
+        name="email"
+        value={values.email}
+        onChange={this.onChange}
+        error={errors.email}
+      />
+      <Field
+        id="password"
+        labelText="Enter password"
+        type="password"
+        placeholder="Enter password"
+        name="password"
+        value={values.password}
+        onChange={this.onChange}
+        error={errors.password}
+      />
+      <Button
+        type="submit"
+        className="btn btn-primary m-2"
+        >
+        Login
+      </Button>
+      </form> 
+      <div>
+        <Link to="/registration">Register</Link>
+        <Link to="/forgot-pass">Forgot password?</Link>
+      </div>
+      </div>
+    }
+    { response && 
+      <div>{response}</div>
+
+    }
 		</div>
 	);
   }
