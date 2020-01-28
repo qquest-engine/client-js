@@ -32,7 +32,7 @@ class Navbar extends React.Component {
 									<Link to="/quests/">Пройденные игры</Link>
 								</li>
 								<li className="menu__item">
-									<Link to="/quests/">Созданные игры</Link>
+									<Link to={`/quests/${this.state.user && this.state.user.id || ''}`}>Созданные игры</Link>
 								</li>
 								<li className="menu__item">
 									<Link to="/statistic/">Моя статистика</Link>

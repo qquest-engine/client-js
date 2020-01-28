@@ -18,7 +18,9 @@ class Registration extends React.Component {
         email: false,
         password: false,
         repeatPassword: false
-      }
+      },
+      statusSuccess: null,
+      statusFail: null,
   }}
 
   onChange = event => {
@@ -63,7 +65,10 @@ class Registration extends React.Component {
     console.log('body', body);
     CallApi.post("/users", {
           body
-        });
+        })
+    .then(data => {
+      this.setState({statusSuccess: data.status});
+    }).catch(error => this.setState({statusFail: error.status}));
   };
 
   onRegistration = e => {
@@ -82,60 +87,91 @@ class Registration extends React.Component {
     }
   };
 
+  registrationAgain = () => {
+    this.setState({
+    statusSuccess: null,
+    statusFail: null,
+      values: {
+        username: "",
+        email: "",
+        password: "",
+        repeatPassword: ""  
+      },
+      errors: {
+        username: false,
+        email: false,
+        password: false,
+        repeatPassword: false
+      },
+  })
+  }
+
   render() {
-  	const { values, errors } = this.state;
+  	const { values, errors, statusSuccess, statusFail } = this.state;
 	return (
 		<div className=''>
-		<form onSubmit={this.onRegistration}>
-			<Field
-				id="username"
-				labelText="Enter username"
-				type="text"
-				placeholder="Enter username"
-				name="username"
-				value={values.username}
-				onChange={this.onChange}
-				error={errors.username}
-			/>
-			<Field
-				id="email1"
-				labelText="Enter email"
-				type="text"
-				placeholder="Enter email"
-				name="email"
-				value={values.email}
-				onChange={this.onChange}
-				error={errors.email}
-			/>
-			<Field
-				id="password1"
-				labelText="Enter password"
-				type="password"
-				placeholder="Enter password"
-				name="password"
-				value={values.password}
-				onChange={this.onChange}
-				error={errors.password}
-			/>
-			<Field
-				id="repeatPassword1"
-				labelText="Repeat password"
-				type="password"
-				placeholder="Repeat password"
-				name="repeatPassword"
-				value={values.repeatPassword}
-				onChange={this.onChange}
-				error={errors.repeatPassword}
-			/>
-			<Button
-				type="submit"
-				className="button_dark"
-				
-				>
-				Registration
-			</Button>
-			<div>Уже в деле? <a>Login</a></div>
-		</form>	
+    { statusSuccess && 
+      <h1>{ statusSuccess }</h1>
+    }
+    { statusFail && 
+      <div>
+      <h1>{ statusFail }</h1>
+      <button onClick={this.registrationAgain}>Спробувати ще раз</button>
+      </div>
+    }
+    { !statusSuccess && !statusFail && 
+    <form onSubmit={this.onRegistration}>
+      <Field
+        id="username"
+        labelText="Enter username"
+        type="text"
+        placeholder="Enter username"
+        name="username"
+        value={values.username}
+        onChange={this.onChange}
+        error={errors.username}
+      />
+      <Field
+        id="email1"
+        labelText="Enter email"
+        type="text"
+        placeholder="Enter email"
+        name="email"
+        value={values.email}
+        onChange={this.onChange}
+        error={errors.email}
+      />
+      <Field
+        id="password1"
+        labelText="Enter password"
+        type="password"
+        placeholder="Enter password"
+        name="password"
+        value={values.password}
+        onChange={this.onChange}
+        error={errors.password}
+      />
+      <Field
+        id="repeatPassword1"
+        labelText="Repeat password"
+        type="password"
+        placeholder="Repeat password"
+        name="repeatPassword"
+        value={values.repeatPassword}
+        onChange={this.onChange}
+        error={errors.repeatPassword}
+      />
+      <Button
+        type="submit"
+        className="button_dark"
+        
+        >
+        Registration
+      </Button>
+      <div>Уже в деле? <a>Login</a></div>
+    </form> 
+    }
+
 		</div>
 	);
   }

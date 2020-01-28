@@ -16,7 +16,7 @@ class Login extends React.Component {
         email: false,
         password: false
       },
-      response: ''
+      statusFail: null
   }}
 
   onChange = event => {
@@ -55,7 +55,22 @@ class Login extends React.Component {
         })
     .then(resp => resp.json())
     .then(token => {console.log('token',token); CallApi.setToken(token.jwt);})
-    .then(this.props.onLoginOuter())
+    .then(token => {
+      return CallApi.get("/users")
+      .then(resp => resp.json())
+      .then(user => this.props.onLoginOuter(user))   
+    })
+    .catch(error => this.setState({
+      statusFail: error.status,
+      values: {
+        email: "",
+        password: "" 
+      },
+      errors: {
+        email: false,
+        password: false
+      },
+    }))
 /*    .then(
       CallApi.get("/user")
     .then(resp => resp.json())
@@ -77,12 +92,30 @@ class Login extends React.Component {
       this.onSubmit();
     }
   };
-
+  registrationAgain = () => {
+    this.setState({
+    statusFail: null,
+      values: {
+        email: "",
+        password: ""
+      },
+      errors: {
+        email: false,
+        password: false
+      },
+  })
+  }
   render() {
-  	const { values, errors, response } = this.state;
+  	const { values, errors, statusFail } = this.state;
 	return (
 		<div className=''>
-    {!response && 
+    { statusFail && 
+      <div>
+      <h1>{ statusFail }</h1>
+      <button onClick={this.registrationAgain}>Спробувати ще раз</button>
+      </div>
+    }
+    { !statusFail && 
     <div>
     <form onSubmit={this.onLogin}>
       <Field
@@ -118,9 +151,6 @@ class Login extends React.Component {
       </div>
       </div>
     }
-    { response && 
-      <div>{response}</div>
-
     }
 		</div>
 	);

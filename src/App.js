@@ -24,6 +24,7 @@ class App extends React.Component {
     super();
     this.state = {
       isLogged: false,
+      user: null,
       types: {
         auto: true,
         online: false,
@@ -34,20 +35,21 @@ class App extends React.Component {
       author: ''
     };
   }
-onLoginInner = () => {
+onLoginInner = (user) => {
       this.setState({
-        isLogged: true
+        isLogged: true,
+        user
       });
 }
   componentDidMount = () => {
     if (window.localStorage.getItem("jwt")) {
-      this.setState({
-        isLogged: true
-      });
+      CallApi.get("/users")
+        .then(resp => resp.json())
+        .then(user => this.onLoginInner(user))   
     }
   }
   render() {
-    const {isLogged} = this.state;
+    const {isLogged, user} = this.state;
     return (
      <Router>
       <header className="header">
@@ -56,9 +58,10 @@ onLoginInner = () => {
 
       </header>
       <div className="wrapper">
-        <Navbar isLogged={this.state.isLogged} queryStr={this.state.queryStr} />
+        <Navbar isLogged={this.state.isLogged} queryStr={this.state.queryStr} user={this.state.user} />
         { !isLogged && <Auth onLoginInner={this.onLoginInner} />}
         <main className="main">
+        { user && <h1>Hello {user.userName}</h1>}
           <Switch>
             <Route path="/quest/:id" component={Quest} />
             <Route path="/question/:id" component={Question} />
