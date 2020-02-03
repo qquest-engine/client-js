@@ -1,51 +1,4 @@
-// mixins
-@function fsize($size) {
-  @return ($size/$baseSize)+rem;
-};
-
-@mixin flex($direction, $justify, $align, $wrap, $inline: false) {
-  @if ($inline) {
-    display: inline-flex;
-  }
-  @else {
-    display: flex
-  }
-  align-items: $align;
-  justify-content: $justify;
-  flex-direction: $direction;
-  flex-wrap: $wrap;
-};
-
-// variables
-$mainFont: 'Proxima Nova';
-$titleFont: 'Gilroy';
-$baseSize: 15;
-
-$light: #ffffff;
-$dark: #1b1f3b;
-$accent: #f58938;
-
-$success: green;
-$error: red;
-
-
-$miniWidth: 320px;
-$phoneWidth: 768px;
-$tabletWidth: 1024px;
-$desktopWidth: 1280px;
-$fullWidth: 1440px;
-$fullMidWidth: 1600px;
-$fullHDWidth: 1920px;
-
-$mini: 'max-width: ' + ($miniWidth - 1);
-$phone: 'max-width: ' + ($phoneWidth - 1);
-$tablet: 'max-width: ' + ($tabletWidth - 1);
-$desktop: 'max-width: ' + ($desktopWidth - 1);
-$full: 'max-width: ' + ($fullWidth - 1);
-$fullMid: 'max-width: ' + ($fullMidWidth - 1);
-$fullHD: 'max-width: ' + ($fullHDWidth - 1);
-
-// reset
+@import '/styles/_variables.scss';
 html {
   margin: 0;
   padding: 0;
@@ -150,12 +103,6 @@ body {
   justify-content: flex-start;
 	width: 100%;
   min-height: calc(100vh - 140px);
-}
-.nav {
-	background-color: $dark;
-	color: white;
-	flex: 0 0 350px;
-	padding: 20px 5px;
 }
 .main {
   flex-grow: 1;

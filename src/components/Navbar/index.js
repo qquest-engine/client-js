@@ -7,18 +7,12 @@ import instagram from '../../assets/images/icons/instagram.svg';
 import user from '../../assets/images/icons/user.svg';
 
 class Navbar extends React.Component {
-	constructor() {
-		super();
-		this.state = {
-		};
-	};
-
   render() {
 	return (
 		<nav className="nav">
 			<div className='navbar'>
 				<div className="menu-block">
-					{this.props.isLogged && <div><img src={user} className="" /> OLGA</div>}
+					{this.props.isLogged && <div><img src={user} className="" /> {this.props.user.userName.toUpperCase()}</div>}
 					<ul className="menu">
 						{this.props.isLogged && <li>
 							<ul className="submenu">
@@ -46,10 +40,10 @@ class Navbar extends React.Component {
 							<Link to="/">Тестовая игра</Link>
 						</li>
 						<li className="menu__item">
-							<Link to="how2play/">Как играть?</Link>
+							<Link to="/how2play">Как играть?</Link>
 						</li>
 						<li className="menu__item">
-							<Link to="rules">Правила</Link>
+							<Link to="/rules">Правила</Link>
 						</li>
 					</ul>
 				</div>

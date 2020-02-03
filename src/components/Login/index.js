@@ -150,7 +150,7 @@ class Login extends React.Component {
         <Link to="/forgot-pass">Forgot password?</Link>
       </div>
       </div>
-    }
+
     }
 		</div>
 	);

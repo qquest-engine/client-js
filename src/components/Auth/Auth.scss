@@ -1,5 +1,7 @@
+@import '../../styles/_variables.scss';
 .auth {
-  flex: 0 0 520px;
-  //background-color: $light;
+  flex: 0 0 50%;
+  padding: 20px;
+  background-color: $light;
   //color: $dark;
 }

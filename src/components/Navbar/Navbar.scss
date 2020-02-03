@@ -10,6 +10,12 @@
 	flex-direction: column;
 	justify-content: space-between;
 }
+.nav {
+	background-color: #1b1f3b;
+	color: white;
+	flex: 0 0 50%;
+	padding: 20px 5px;
+}
 .menu-block {
 	flex-grow: 1;
 	padding-left: 42px;	

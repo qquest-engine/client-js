@@ -4,26 +4,20 @@ import searchImg from '../../assets/images/icons/search.svg';
 import Field from "../common/Field";
 
 class Search extends React.Component {
-	constructor() {
-		super();
-		this.state = {
-		};
-	};
-
   render() {
-  	const {search, onChange} = this.props;
+  	const {search, onChange, onSearch} = this.props;
 	return (
 		<div className="search">
-			<img src={searchImg} />
 			<Field
 				id="search"
-				labelText="Enter search str"
+				labelText=""
 				type="text"
 				placeholder="Enter search"
 				name="search"
-				value={this.state.search}
+				value={search}
 				onChange={onChange}
 			/>
+			<a onClick={onSearch}><img src={searchImg} style={{height: 20+'px'}} /></a>			
 		</div>
 	);
   }

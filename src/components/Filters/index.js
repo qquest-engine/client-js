@@ -3,13 +3,6 @@ import './Filters.scss'
 import CheckboxField from "../common/CheckboxField";
 
 class Filters extends React.Component {
-	constructor() {
-		super();
-		this.state = {
-		};
-	};
-
-
   render() {
   	const {types, onCheck, onViewAll} = this.props;
 	return (

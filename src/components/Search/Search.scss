@@ -1,20 +1,5 @@
-.header {
-	height: 140px;
+.search {
 	display: flex;
- 	justify-content: flex-start;
-}
-.logo1 {
-	font-size: 100px;
-	line-height: 122px;
-	color: #f58938;
-	padding-top: 18px;
-	padding-left: 42px;	
-	flex: 0 0 350px;
-	background-color: #1b1f3b;
-}
-.logo2 {
-	font-size: 100px;
-	line-height: 122px;
-	padding-top: 18px;
-	flex: 0 0 350px;
+	justify-content: flex-end;
+	padding-right: 40px;
 }
