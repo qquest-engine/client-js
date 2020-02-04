@@ -146,7 +146,7 @@ class Login extends React.Component {
       </Button>
       </form> 
       <div>
-        <Link to="/registration">Register</Link>
+        <a onClick={() => this.props.onTab('registration')}>registration</a>
         <Link to="/forgot-pass">Forgot password?</Link>
       </div>
       </div>

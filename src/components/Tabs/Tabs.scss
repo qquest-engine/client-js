@@ -1,7 +1,12 @@
 .tabs {
 	position: absolute;
+	width: 100%;
 	z-index: 2;
 	top: 0;
 	left: 0;
 	color: red;
+	display: flex;
+	flex-wrap: no-wrap;
+	justify-content: center;
+	align-items: center;
 }

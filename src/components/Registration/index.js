@@ -168,7 +168,7 @@ class Registration extends React.Component {
         >
         Registration
       </Button>
-      <div>Уже в деле? <a>Login</a></div>
+      <div>Уже в деле? <a onClick={() => this.props.onTab('login')}>Login</a></div>
     </form> 
     }
 

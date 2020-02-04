@@ -24,15 +24,62 @@ const initialTypes = {
   online: false,
   photo: false
 }
+const quests = [
+  {
+    "id": 1,
+    "accessTime": "15.11.2019",
+    "author": "OLGA",    
+    "description": "string",
+    "difficulty": 0,
+    "imageLink": "https://www.kbb.com/articles/wp-content/uploads/2019/11/2019-rolls-royce-cullinan-side.jpg",
+    "isPublic": true,
+    "name": "string1",
+    "type": "AUTO"
+  },
+  {
+    "id": 2,
+    "accessTime": 0,
+    "author": 0,    
+    "description": "string",
+    "difficulty": 0,
+    "imageLink": "https://www.kbb.com/articles/wp-content/uploads/2019/12/01-2018-cadillac-CTS-sedan-oem.jpg",
+    "isPublic": true,
+    "name": "string2",
+    "type": "AUTO"
+  },
+  {
+    "id": 3,
+    "accessTime": 0,
+    "author": 0,    
+    "description": "string",
+    "difficulty": 0,
+    "imageLink": "https://www.kbb.com/articles/wp-content/uploads/2019/11/2019-rolls-royce-cullinan-side.jpg",
+    "isPublic": true,
+    "name": "string1",
+    "type": "AUTO"
+  },
+  {
+    "id": 4,
+    "accessTime": 0,
+    "author": 0,    
+    "description": "string",
+    "difficulty": 0,
+    "imageLink": "https://www.kbb.com/articles/wp-content/uploads/2019/12/01-2018-cadillac-CTS-sedan-oem.jpg",
+    "isPublic": true,
+    "name": "string2",
+    "type": "AUTO"
+  }
+]
 class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      quests: [],
+      quests,
       isLogged: false,
       user: null,
       types: initialTypes,
-      search: ''
+      search: '',
+      activeTab: 'info'
     };
   }
   onLogin = (user) => {
@@ -95,6 +142,12 @@ class App extends React.Component {
         }
       });     
   }
+  onTab = tab => {
+      this.setState({
+        activeTab: tab
+      });     
+  }
+
   componentDidMount = () => {
     if (window.localStorage.getItem("jwt")) {
       CallApi.get("/users")
@@ -130,7 +183,7 @@ class App extends React.Component {
      <Router>
       <Header types={this.state.types}  search={this.state.search} onCheck={this.onCheck} onViewAll={this.onViewAll} onChange={this.onChange} onSearch={this.onSearch} />    
       <div className="wrapper">
-        <Sidebar isLogged={isLogged} user={user} onLogin={this.onLogin} onLogout={this.onLogout} />    
+        <Sidebar isLogged={isLogged} user={user} onLogin={this.onLogin} onLogout={this.onLogout} activeTab={this.state.activeTab} onTab={this.onTab} />    
         <main className="main">
           <Switch>
             <Route path="/quest/:id" component={Quest} />
