@@ -13,7 +13,8 @@ class Sidebar extends React.Component {
   	const {isLogged, user, onLogin, onLogout} = this.props;
 	return (
     <div className="sidebar">
-      { this.props.activeTab === 'info' && <Tabs activeTab={this.props.activeTab} onTab={this.props.onTab} />}
+      { /*this.props.activeTab === 'info' && <Tabs activeTab={this.props.activeTab} onTab={this.props.onTab} />*/}
+      <Tabs activeTab={this.props.activeTab} onTab={this.props.onTab} />
       <Navbar isLogged={isLogged} user={user} />
       { !isLogged && <Auth onLogin={onLogin} onLogout={onLogout} activeTab={this.props.activeTab} onTab={this.props.onTab} />}
       

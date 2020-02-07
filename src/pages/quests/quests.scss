@@ -11,12 +11,12 @@
   padding: 30px;
   &:after, &:before {
     content: '';
-    width: calc(33% - calc(60px / 3));
+    width: calc(33% - calc(30px / 3));
     height: 0;
     order: 1;
   }
   .quest {
-    width: calc(33% - calc(60px / 3));
+    width: calc(33% - calc(30px / 3));
   }
 }
 .quest {
@@ -29,4 +29,6 @@
 	  flex-wrap: wrap;
   }
 }
-
+.pagelister {
+  text-align: center;
+}

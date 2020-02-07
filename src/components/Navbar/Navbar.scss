@@ -3,12 +3,14 @@
 	a {
 		color: white;
 	}
+
 }
 .navbar {
 	height: 100%;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
+	padding-top: 70px;
 }
 .nav {
 	background-color: #1b1f3b;

@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 import Login from "../Login"
 import Registration from "../Registration"
+import ForgotPass from "../ForgotPass"
 
 import './Auth.scss' 
 
@@ -22,14 +23,13 @@ class Auth extends React.Component {
       <aside className="auth">
         <div> 
           { this.props.activeTab === 'login' && <Login values={this.state.values} errors={this.state.errors}  onLoginOuter={this.props.onLoginInner} onTab={this.props.onTab} />}
-          <hr />
+          { this.props.activeTab === 'forgotPass' && <ForgotPass values={this.state.values} errors={this.state.errors}  onLoginOuter={this.props.onLoginInner} onTab={this.props.onTab} />}
           { this.props.activeTab === 'registration' && <Registration values={this.state.values} errors={this.state.errors} onChange={this.onChange} onTab={this.props.onTab} />}
           { this.props.activeTab === 'info' && 
             <div>
-              <p>Последний раз её видели в г. Харькове, информация обновляется. За пределы Харьковской области собака вряд ли выбегала. Рассчитываем, что собака найдется за 12 часов. Предполагаемая длина поискового маршрута - 200 км.</p>
-              <p>Старт поисковой операции - в черте города, строго в 19:00. Предстартовый брифинг начнётся в 18:30. Место предстартового брифинга - парковка супермаркета "Класс" по координатам: 50.034818, 36.219352</p>
-              <p>Финиш поисковой операции в 40 км от Харькова, у воды. Планируется костер, каша, сосиски, и тд. Желающим имеет смысл взять купательные принадлежности (во время поисковой операции в них необходимости нет).</p>
-              <p>Для оперативного информирования во время поисковой операции создан телеграм канал. Принять участие в поисковой операции смогут 20 экипажей.</p>
+              <p><b>Квест</b> – это интеллектуальное развлечение как для небольшой компании (а возможно и одного человека), так и большого количества игроков.</p>
+              <p>Маленькое приключение, требующее от игрока решения умственных задач для продвижения по сюжету. Цель решения задач - найти код, который позволит перейти к следующему заданию.</p>
+              <p><b>QuestEngine</b> - это интернет-сервис, который позволяет вам как проходить уже существующие квесты, так и создавать свои собственные.</p>
 
             </div>
           }

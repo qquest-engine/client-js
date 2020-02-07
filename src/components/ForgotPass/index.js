@@ -4,7 +4,7 @@ import Button from "../common/Button";
 import { Link } from "react-router-dom";
 import CallApi from "../../api/api";
 
-class Login extends React.Component {
+class ForgotPass extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -128,27 +128,13 @@ class Login extends React.Component {
         onChange={this.onChange}
         error={errors.email}
       />
-      <Field
-        id="password"
-        labelText="Enter password"
-        type="password"
-        placeholder="Enter password"
-        name="password"
-        value={values.password}
-        onChange={this.onChange}
-        error={errors.password}
-      />
       <Button
         type="submit"
         className="btn btn-primary m-2"
         >
-        Login
+        OK
       </Button>
-      </form> 
-      <div>
-        <b><a onClick={() => this.props.onTab('registration')}>Registration</a></b><br />
-        <b><a onClick={() => this.props.onTab('forgotPass')}>Forgot password?</a></b>
-      </div>
+      </form>
       </div>
 
     }
@@ -157,4 +143,4 @@ class Login extends React.Component {
   }
 }
 
-export default Login;
+export default ForgotPass;

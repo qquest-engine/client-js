@@ -4,10 +4,8 @@ class Tabs extends React.Component {
   render() {
 	return (
 		<div className="tabs">
-			<ul>
-				<li onClick={() => this.props.onTab('registration')}>Registration</li>
-				<li onClick={() => this.props.onTab('login')}>Login</li>
-			</ul>
+			<div className="tabs__item" onClick={() => this.props.onTab('registration')}>Registration</div>
+			<div className="tabs__item" onClick={() => this.props.onTab('login')}>Login</div>
 		</div>
 	);
   }

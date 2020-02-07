@@ -33,41 +33,41 @@ const quests = [
     "difficulty": 0,
     "imageLink": "https://www.kbb.com/articles/wp-content/uploads/2019/11/2019-rolls-royce-cullinan-side.jpg",
     "isPublic": true,
-    "name": "string1",
-    "type": "AUTO"
+    "name": "QuestEngine 1",
+    "type": "auto"
   },
   {
-    "id": 2,
-    "accessTime": 0,
+    "id": 3,
+    "accessTime": '15.11.2019',
     "author": 0,    
     "description": "string",
     "difficulty": 0,
     "imageLink": "https://www.kbb.com/articles/wp-content/uploads/2019/12/01-2018-cadillac-CTS-sedan-oem.jpg",
     "isPublic": true,
-    "name": "string2",
-    "type": "AUTO"
+    "name": "QuestEngine 2",
+    "type": "auto"
   },
   {
     "id": 3,
-    "accessTime": 0,
+    "accessTime": '15.11.2019',
     "author": 0,    
     "description": "string",
     "difficulty": 0,
     "imageLink": "https://www.kbb.com/articles/wp-content/uploads/2019/11/2019-rolls-royce-cullinan-side.jpg",
     "isPublic": true,
-    "name": "string1",
-    "type": "AUTO"
+    "name": "QuestEngine 3",
+    "type": "photo"
   },
   {
     "id": 4,
-    "accessTime": 0,
+    "accessTime": '15.11.2019',
     "author": 0,    
     "description": "string",
     "difficulty": 0,
     "imageLink": "https://www.kbb.com/articles/wp-content/uploads/2019/12/01-2018-cadillac-CTS-sedan-oem.jpg",
     "isPublic": true,
-    "name": "string2",
-    "type": "AUTO"
+    "name": "QuestEngine 4",
+    "type": "online"
   }
 ]
 class App extends React.Component {
@@ -176,7 +176,21 @@ class App extends React.Component {
         });      
     }
   }
+filteredQuests() {
+  let filteredList = [];
+  let arr = '';
+  Object.entries(this.state.types).forEach(item => {
+    if (item[1]) arr+= `${item[0]},`
+  });
+  if (arr.length) {arr = arr.slice(0,-1);}
+  arr = arr.split(',');
+  console.log(arr);
+  if (this.state.quests.length) {
+    filteredList = this.state.quests.filter(i => arr.includes(i.type))
+  }
 
+  return filteredList;
+}
   render() {
     const {isLogged, user, quests} = this.state;
     return (
@@ -190,7 +204,7 @@ class App extends React.Component {
             <Route path="/question/:id" component={Question} />
             <Route path="/rules/" component={Rules} />
             <Route path="/how2play/" component={How2Play} />
-            <Route path="/" component={() => <Quests quests={quests} />} />
+            <Route path="/" component={() => <Quests quests={this.filteredQuests()} />} />
           </Switch>
         </main>
       </div>
