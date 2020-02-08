@@ -1,0 +1,13 @@
+.filters-block {
+	flex-grow: 1;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	padding-right: 60px;
+}
+.filters {
+	li {
+		display: inline-block;
+		padding-right: 20px;
+	}
+}

@@ -1,1 +1,109 @@
+@import '/styles/_variables.scss';
+html {
+  margin: 0;
+  padding: 0;
+  font-size: 15px;
+  line-height: 1.5em;
+}
 
+body {
+  margin: 0;
+  padding: 0;
+  color: $dark;
+  font-family: $mainFont, 'Arial', sans-serif;
+  background-color: $light;
+  font-size: 15px;
+  font-weight: 400;
+  min-width: 320px;
+  min-height: 500px;
+  line-height: 1.5em;
+  overflow-x: hidden;
+}
+
+@media ($tablet) {
+  body {
+    font-size: 14px;
+  }
+}
+
+input, textarea, button {
+  text-decoration: none;
+  font-family: $mainFont, 'Arial', sans-serif;
+  max-width: 100%;
+  &:hover, &:focus {
+    outline: none;
+  }
+}
+
+button {
+  background: none;
+  border: 0 none;
+  cursor: pointer;
+}
+
+a {
+  color: $dark;
+  text-decoration: none;
+  font-family: $mainFont, 'Arial', sans-serif;
+  &:hover, &:focus {
+    text-decoration: none;
+    outline: none;
+  }
+}
+
+body * {
+  box-sizing: border-box;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  & li {
+    list-style: none;
+    margin: 0;
+    padding: 0;  
+  }
+}
+
+p {
+  padding: 0 0 20px 0;
+  margin: 0;
+}
+
+.clearfix:after {
+  display: block;
+  content: '';
+  clear: both;
+}
+
+img, iframe {
+  max-width: 100%;
+  height: auto;
+}
+
+// main
+@font-face {
+  font-family: 'Proxima Nova';
+  src: url('/fonts/ProximaNova-Regular.eot');
+  src: local('/fonts/Proxima Nova Regular'), local('ProximaNova-Regular');
+  src: url('/fonts/ProximaNova-Regular.eot?#iefix') format('embedded-opentype');
+  src: url('/fonts/ProximaNova-Regular.woff') format('woff');
+  src: url('/fonts/ProximaNova-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal  ;
+}
+
+body {
+  font-family: "Proxima Nova", Arial, sans-serif;
+}
+
+
+.wrapper {
+	display: flex;
+  justify-content: flex-start;
+	width: 100%;
+  min-height: calc(100vh - 140px);
+}
+.main {
+  flex-grow: 1;
+}

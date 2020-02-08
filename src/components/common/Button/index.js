@@ -1,6 +1,7 @@
 import React from 'react'
 import cx from 'classnames'
-import propTypes from 'prop-types'
+import propTypes from 'prop-types';
+import './Button.scss';
 
 export default class Button extends React.Component {
 
@@ -27,9 +28,9 @@ export default class Button extends React.Component {
             <button
                 type={this.props.type}
                 className={cx(
-                    'q-button',
-                    { 'q-button_active': this.props.isActive },
-                    { [`q-button_radius-${this.props.isRadius}`]: this.props.isRadius },
+                    'button',
+                    { 'button_active': this.props.isActive },
+                    { [`button_radius-${this.props.isRadius}`]: this.props.isRadius },
                     this.props.className
                 )}
                 disabled={this.props.disabled}
