@@ -71,10 +71,10 @@ class Login extends React.Component {
         password: false
       },
     }))
-/*    .then(
+    .then(
       CallApi.get("/user")
     .then(resp => resp.json())
-    .then(user => {console.log('user',user)}));*/
+    .then(user => {console.log('user',user)}));
   };
 
   onLogin = e => {
@@ -117,7 +117,7 @@ class Login extends React.Component {
     }
     { !statusFail && 
     <div>
-    <form onSubmit={this.onLogin}>
+    <div onSubmit={this.onLogin}>
       <Field
         id="email"
         labelText="Enter email"
@@ -144,7 +144,7 @@ class Login extends React.Component {
         >
         Login
       </Button>
-      </form> 
+      </div> 
       <div>
         <b><a onClick={() => this.props.onTab('registration')}>Registration</a></b><br />
         <b><a onClick={() => this.props.onTab('forgotPass')}>Forgot password?</a></b>

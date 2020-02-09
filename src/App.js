@@ -74,7 +74,7 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      quests,
+      quests: [],
       isLogged: false,
       user: null,
       types: initialTypes,
@@ -152,7 +152,7 @@ class App extends React.Component {
     if (window.localStorage.getItem("jwt")) {
       CallApi.get("/users")
         .then(resp => resp.json())
-        .then(user => this.onLoginInner(user))   
+        .then(user => this.onLogin(user))   
     }
     let url = "/quests?" + this.getQueryString();
     CallApi.get(url, {mode: 'cors'})
@@ -166,7 +166,7 @@ class App extends React.Component {
     console.log('newValues',this.state);    
   }
 
-  componentDidUpdate(prevState) {
+/*  componentDidUpdate(prevState) {
    if (this.state.types !== prevState.types) {
         CallApi.get('/quests?' + this.getQueryString(), {
         }).then(resp => resp.json()).then(data => {console.log(data); 
@@ -175,7 +175,7 @@ class App extends React.Component {
           })
         });      
     }
-  }
+  }*/
 filteredQuests() {
   let filteredList = [];
   let arr = '';
