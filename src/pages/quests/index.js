@@ -9,17 +9,17 @@ class Home extends React.Component {
     return (
           <div className="quests-block">
             {quests && <div className="quests">
-                        <div>{ quests.length && quests.map(quest => 
+                        { quests.length && quests.map(quest => 
                           (
                             <div key={quest.id} className="col-6 mb-4 quest">
                               <QuestItem item={quest} />
                             </div>
                           )
                         )}
-                        </div>
-                        <div className="pagelister"> 1 2 3 ... 4 5 6 </div>
+                        
                         </div>
             }
+            <div className="pagelister"> 1 2 3 ... 4 5 6 </div>
           </div>
     )
   }

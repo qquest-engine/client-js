@@ -22,8 +22,8 @@ class Auth extends React.Component {
     return (
       <aside className="auth">
         <div> 
-          { this.props.activeTab === 'login' && <Login values={this.state.values} errors={this.state.errors}  onLoginOuter={this.props.onLoginInner} onTab={this.props.onTab} />}
-          { this.props.activeTab === 'forgotPass' && <ForgotPass values={this.state.values} errors={this.state.errors}  onLoginOuter={this.props.onLoginInner} onTab={this.props.onTab} />}
+          { this.props.activeTab === 'login' && <Login values={this.state.values} errors={this.state.errors} onTab={this.props.onTab} />}
+          { this.props.activeTab === 'forgotPass' && <ForgotPass values={this.state.values} errors={this.state.errors} onTab={this.props.onTab} />}
           { this.props.activeTab === 'registration' && <Registration values={this.state.values} errors={this.state.errors} onChange={this.onChange} onTab={this.props.onTab} />}
           { this.props.activeTab === 'info' && 
             <div>
