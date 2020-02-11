@@ -74,7 +74,7 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      quests,
+      quests: [],
       isLogged: false,
       user: null,
       types: initialTypes,
@@ -82,7 +82,7 @@ class App extends React.Component {
       activeTab: 'info'
     };
   }
-  onLogin = (user) => {
+  onLoginInner = (user) => {
         this.setState({
           isLogged: true,
           user
@@ -166,8 +166,8 @@ class App extends React.Component {
     console.log('newValues',this.state);    
   }
 
-  componentDidUpdate(prevState) {
-   if (this.state.types !== prevState.types) {
+  componentDidUpdate(prevProps, prevState) {
+   if (this.state.type !== prevState.type) {
         CallApi.get('/quests?' + this.getQueryString(), {
         }).then(resp => resp.json()).then(data => {console.log(data); 
               this.setState({
@@ -184,7 +184,6 @@ filteredQuests() {
   });
   if (arr.length) {arr = arr.slice(0,-1);}
   arr = arr.split(',');
-  console.log(arr);
   if (this.state.quests.length) {
     filteredList = this.state.quests.filter(i => arr.includes(i.type))
   }
@@ -197,14 +196,15 @@ filteredQuests() {
      <Router>
       <Header types={this.state.types}  search={this.state.search} onCheck={this.onCheck} onViewAll={this.onViewAll} onChange={this.onChange} onSearch={this.onSearch} />    
       <div className="wrapper">
-        <Sidebar isLogged={isLogged} user={user} onLogin={this.onLogin} onLogout={this.onLogout} activeTab={this.state.activeTab} onTab={this.onTab} />    
+        <Sidebar isLogged={isLogged} user={user} onLoginInner={this.onLoginInner} onLogout={this.onLogout} activeTab={this.state.activeTab} onTab={this.onTab} /> 
         <main className="main">
           <Switch>
             <Route path="/quest/:id" component={Quest} />
             <Route path="/question/:id" component={Question} />
             <Route path="/rules/" component={Rules} />
             <Route path="/how2play/" component={How2Play} />
-            <Route path="/" component={() => <Quests quests={this.filteredQuests()} />} />
+            <Route path="/" component={() => <Quests quests={quests} />} />
+            /*<Route path="/" component={() => <Quests quests={this.filteredQuests()} />} />*/
           </Switch>
         </main>
       </div>

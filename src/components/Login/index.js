@@ -60,6 +60,10 @@ class Login extends React.Component {
       .then(resp => resp.json())
       .then(user => this.props.onLoginOuter(user))   
     })
+    .then(
+      CallApi.get("/users")
+    .then(resp => resp.json())
+    .then(user => {console.log('user',user); this.props.onLoginInner(user)}))
     .catch(error => this.setState({
       statusFail: error.status,
       values: {
@@ -71,14 +75,10 @@ class Login extends React.Component {
         password: false
       },
     }))
-/*    .then(
-      CallApi.get("/user")
-    .then(resp => resp.json())
-    .then(user => {console.log('user',user)}));*/
+
   };
 
-  onLogin = e => {
-    e.preventDefault();
+  onLogin = () => {
     const errors = this.validateFields();
     console.log('errors', errors);
     if (Object.keys(errors).length > 0) {
@@ -117,7 +117,7 @@ class Login extends React.Component {
     }
     { !statusFail && 
     <div>
-    <form onSubmit={this.onLogin}>
+    <div>
       <Field
         id="email"
         labelText="Enter email"
@@ -139,12 +139,13 @@ class Login extends React.Component {
         error={errors.password}
       />
       <Button
-        type="submit"
+        type="button"
         className="btn btn-primary m-2"
+        onClick={this.onLogin}
         >
         Login
       </Button>
-      </form> 
+      </div> 
       <div>
         <b><a onClick={() => this.props.onTab('registration')}>Registration</a></b><br />
         <b><a onClick={() => this.props.onTab('forgotPass')}>Forgot password?</a></b>
