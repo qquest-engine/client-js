@@ -20,7 +20,7 @@ import Sidebar from "./components/Sidebar";
 import './App.scss';
 
 const initialTypes = {
-  auto: true,
+  auto: false,
   online: false,
   photo: false
 }
@@ -83,6 +83,7 @@ class App extends React.Component {
     };
   }
   onLoginInner = (user) => {
+    console.log('user', user)
         this.setState({
           isLogged: true,
           user
@@ -90,9 +91,10 @@ class App extends React.Component {
   }
   onLogout = (user) => {
         this.setState({
-          isLogged: true,
-          user
+          isLogged: false,
+          user: null
         });
+        CallApi.setToken(null);
   }
   getQueryString = () => {
     let str = '';
@@ -167,7 +169,8 @@ class App extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-   if (this.state.type !== prevState.type) {
+    console.log('type', this.state.type)
+   if (this.state.types !== prevState.types) {
         CallApi.get('/quests?' + this.getQueryString(), {
         }).then(resp => resp.json()).then(data => {console.log(data); 
               this.setState({
@@ -191,12 +194,12 @@ filteredQuests() {
   return filteredList;
 }
   render() {
-    const {isLogged, user, quests} = this.state;
+    const {isLogged, user, quests, activeTab} = this.state;
     return (
      <Router>
       <Header types={this.state.types}  search={this.state.search} onCheck={this.onCheck} onViewAll={this.onViewAll} onChange={this.onChange} onSearch={this.onSearch} />    
       <div className="wrapper">
-        <Sidebar isLogged={isLogged} user={user} onLoginInner={this.onLoginInner} onLogout={this.onLogout} activeTab={this.state.activeTab} onTab={this.onTab} /> 
+        <Sidebar isLogged={isLogged} user={user} onLogin={this.onLoginInner} onLogout={this.onLogout} activeTab={activeTab} onTab={this.onTab} /> 
         <main className="main">
           <Switch>
             <Route path="/quest/:id" component={Quest} />

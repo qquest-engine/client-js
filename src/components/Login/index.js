@@ -54,28 +54,12 @@ class Login extends React.Component {
           body
         })
     .then(resp => resp.json())
-    .then(token => {console.log('token',token); CallApi.setToken(token.jwt);})
     .then(token => {
-      return CallApi.get("/users")
+      CallApi.setToken(token.jwt);
+      return CallApi.get("/users", { headers: { authorization: `Bearer ${token.jwt}`}})
       .then(resp => resp.json())
-      .then(user => this.props.onLoginOuter(user))   
+      .then(resp => this.props.onLogin(resp))
     })
-    .then(
-      CallApi.get("/users")
-    .then(resp => resp.json())
-    .then(user => {console.log('user',user); this.props.onLoginInner(user)}))
-    .catch(error => this.setState({
-      statusFail: error.status,
-      values: {
-        email: "",
-        password: "" 
-      },
-      errors: {
-        email: false,
-        password: false
-      },
-    }))
-
   };
 
   onLogin = () => {

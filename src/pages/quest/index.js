@@ -59,11 +59,10 @@ class Quest extends React.Component {
                         <div className="card-text">Дата проведения: {date || ''}</div>
                         <div className="card-text">Начало игры в: {time || ''}</div>
                         <div className="card-text">Автор: <Link to={`/quest/user/${quest.id}`}>{quest.author}</Link></div>
-                        <div className="card-text">Тип: {quest.type}</div>
-                        <div>
-                          <img src={photo} className="" />
-                          <img src={online} className="" />
-                          <img src={auto} className="" />
+                        <div className="card-text">Тип:&nbsp;
+                          {quest.type === 'PHOTO' && <img src={photo} className="" />}
+                          {quest.type === 'ONLINE' && <img src={online} className="" />}
+                          {quest.type === 'AUTO' && <img src={auto} className="" />}
                         </div>
                         <Button
                           type="button"

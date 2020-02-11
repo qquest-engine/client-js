@@ -17,7 +17,7 @@ class Search extends React.Component {
 				value={search}
 				onChange={onChange}
 			/>
-			<a onClick={onSearch}><img src={searchImg} style={{height: 20+'px'}} /></a>			
+			<a onClick={onSearch}>&nbsp;<img src={searchImg} style={{height: 20+'px'}} /></a>			
 		</div>
 	);
   }

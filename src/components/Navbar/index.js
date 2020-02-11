@@ -1,7 +1,7 @@
 import React from "react";
 import './Navbar.scss';
 import { Link } from "react-router-dom";
-//import home from '../../assets/images/icons/home.svg';
+import home from '../../assets/images/icons/home.svg';
 import facebook from '../../assets/images/icons/facebook.svg';
 import instagram from '../../assets/images/icons/instagram.svg';
 import user from '../../assets/images/icons/user.svg';
@@ -12,7 +12,7 @@ class Navbar extends React.Component {
 		<nav className="nav">
 			<div className='navbar'>
 				<div className="menu-block">
-					{this.props.isLogged && <div><img src={user} className="" /> {this.props.user.userName.toUpperCase()}</div>}
+					{this.props.isLogged && <h2><img src={user} className="" /> {(this.props.user && this.props.user.userName && this.props.user.userName.toUpperCase()) || ''}</h2>}
 					<ul className="menu">
 						{this.props.isLogged && <li>
 							<ul className="submenu">
@@ -32,7 +32,7 @@ class Navbar extends React.Component {
 									<Link to="/statistic/">Моя статистика</Link>
 								</li>
 								<li className="menu__item">
-									<span onClick={() => console.log('logout')}>Выйти</span>
+									<span onClick={this.props.onLogout}>Выйти</span>
 								</li>
 							</ul>
 						</li>}
@@ -48,7 +48,7 @@ class Navbar extends React.Component {
 					</ul>
 				</div>
 				<div className="social">
-					{/*<img src={home} />*/}
+					{<img src={home} className="social__item" />}
 					<img src={facebook} className="social__item" />
 					<img src={instagram} className="social__item" />
 				</div>
