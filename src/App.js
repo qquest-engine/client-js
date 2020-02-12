@@ -105,7 +105,7 @@ class App extends React.Component {
     });
     if (arr.length) {str = str + arr; str = str.slice(0,-1);}
 
-    str+= '&search=' + this.state.search.split(' ').join('+');
+    str+= '&search=' + this.state.search.split(' ').join('+').toLowerCase();
     console.log('get query string', str);
     return str;
   }
@@ -154,7 +154,8 @@ class App extends React.Component {
     if (window.localStorage.getItem("jwt")) {
       CallApi.get("/users")
         .then(resp => resp.json())
-        .then(user => this.onLoginInner(user))   
+        .then(user => this.onLoginInner(user))
+        .catch(error => this.onLogout())
     }
     let url = "/quests?" + this.getQueryString();
     CallApi.get(url, {mode: 'cors'})
