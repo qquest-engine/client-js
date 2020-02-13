@@ -68,7 +68,8 @@ class Quest extends React.Component {
                           type="button"
                           className="btn btn-primary m-2"
                           >
-                          Вход в игру
+                          <Link to={`/question/6`}>Вход в игру</Link>
+                          
                         </Button>
                       </div>
                     </div>
