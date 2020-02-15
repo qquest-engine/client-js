@@ -17,7 +17,8 @@ class Login extends React.Component {
         password: false
       },
       statusFail: null
-  }}
+    }
+  }
 
   onChange = event => {
     const newValues = {
@@ -59,6 +60,11 @@ class Login extends React.Component {
       return CallApi.get("/users", { headers: { authorization: `Bearer ${token.jwt}`}})
       .then(resp => resp.json())
       .then(resp => this.props.onLogin(resp))
+    })
+    .catch(err => {
+      this.setState({
+        statusFail: err.status
+    });
     })
   };
 
