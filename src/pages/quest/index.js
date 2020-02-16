@@ -44,7 +44,7 @@ class Quest extends React.Component {
     return (
 		        <div>
               { quest && 
-                <div key={quest.id} className="col-6 mb-4">
+                <div key={quest.id} className="col-6 mb-4 main_white">
                   <div className="card" style={{ width: "100%" }}>
                     <div className="card-top">
                       <div className="card-img">
@@ -68,7 +68,7 @@ class Quest extends React.Component {
                           type="button"
                           className="btn btn-primary m-2"
                           >
-                          <Link to={`/question/6`}>Вход в игру</Link>
+                          <Link to={`/question/1`}>Вход в игру</Link>
                           
                         </Button>
                       </div>
